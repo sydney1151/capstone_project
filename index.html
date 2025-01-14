@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        body {
+            background-color: pink;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #ff1493;
+            margin-top: 100px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            margin: 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        #yesBtn {
+            background-color: #ff69b4;
+            color: white;
+        }
+
+        #noBtn {
+            background-color: #ffb6c1;
+            color: white;
+            position: relative;
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.2);
+        }
+
+        #noBtn:hover {
+            transform: translateX(100px);
+        }
+
+        #surpriseImage {
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            animation: popIn 1s ease-in-out;
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            transform: rotate(45deg);
+            animation: float 6s infinite ease-in-out;
+        }
+
+        .heart::before, .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: -10px;
+            top: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-800px) rotate(45deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Will You Be My Valentine? ❤❤❤</h1>
+    <button id="yesBtn">Yes</button>
+    <button id="noBtn">No</button>
+    <div>
+        <img id="surpriseImage" src="https://i.postimg.cc/cHX1mYC6/you-won-the-lottery.png" alt="Surprise!">
+    </div>
+
+    <script>
+        document.getElementById("yesBtn").onclick = function() {
+            document.querySelector("h1").style.display = "none";
+            document.getElementById("yesBtn").style.display = "none";
+            document.getElementById("noBtn").style.display = "none";
+            document.getElementById("surpriseImage").style.display = "block";
+        };
+
+        // Floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        setInterval(createHeart, 500);
+    </script>
+</body>
+</html>
